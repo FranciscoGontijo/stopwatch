@@ -14,7 +14,7 @@ h2 {
     text-transform: uppercase;
 }
 
-p {
+.timer {
     margin-top: 5px;
     font-size: 44px;
 }
@@ -28,4 +28,9 @@ button {
     height: 50px;
     width: 100px;
     border-radius: 25px;
+}
+
+.lap {
+    margin-top: 35px;
+    font-size: 44px;
 }

@@ -10,13 +10,15 @@
 <body>
     <h1>Stopwatch</h1>
     <h2>Vanilla Javascript stopwatch</h2>
-    <p><span id="seconds">00</span>:<span id="tens">00</span></p>
+    <p class="timer"><span id="seconds">00</span>:<span id="tens">00</span></p>
     <section class="buttons">
         <button id="start-button">Start</button>
         <button id="stop-button">Stop</button>
         <button id="lap-button">Lap</button>
         <button id="reset-button">Reset</button>   
     </section>
-    <script href="./index.js"></script>
+    <p class="lap">Lap: <span id="lap-seconds">00</span>:<span id="lap-tens">00</span></p>
+    <script src="./index.js"></script>
+    <script src="./buttons.js"></script>
 </body>
 </html>
