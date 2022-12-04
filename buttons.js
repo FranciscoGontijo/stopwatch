@@ -6,9 +6,11 @@ const startButton = document.querySelector('#start-button');
 const stopButton = document.querySelector('#stop-button');
 const lapButton = document.querySelector('#lap-button');
 const resetButton = document.querySelector('#reset-button');
+const lapSection = document.querySelector(".lap-section");
 let tens = 00;
 let seconds = 00;
 let timer;
+let lapCount = 0;
 
 const startTimer = () => {
     tens++;
@@ -37,18 +39,23 @@ const startFunction = () => {
     timer = setInterval(startTimer, 10);
 };
 
+
 const lapFunction = () => {
-    if (tens <= 9) {
-        lapTens.innerHTML = '0' + tens;
+    lapCount++;
+    const lapElement = document.createElement("p");
+    lapElement.innerHTML = 'Lap' + lapCount + ':' + seconds + ':' + tens;
+    lapSection.append(lapElement);
+    if (tens <= 9 && seconds <= 9) {
+        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + '0' + seconds + ':' + '0' + tens;
     };
-    if (tens > 9) {
-        lapTens.innerHTML = tens;
+    if (tens > 9 && seconds <= 9) {
+        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + '0' + seconds + ':' + tens;
     };
-    if (seconds <= 9) {
-        lapSeconds.innerHTML = '0' + seconds;
-    };
-    if (seconds > 9) {
-        lapSeconds.innerHTML = seconds;
+    if (tens <= 9 && seconds > 9) {
+        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + seconds + ':' + '0' + tens;
+    }
+    if (tens > 9 && seconds > 9) {
+        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + seconds + ':' + tens;
     };
 };
 
@@ -60,6 +67,7 @@ const resetFunction = () => {
     displaySeconds.innerHTML = '0' + seconds;
     lapTens.innerHTML = '0' + tens;
     lapSeconds.innerHTML = '0' + seconds;
+    lapCount = 0;
 };
 
 startButton.addEventListener('click', startFunction);

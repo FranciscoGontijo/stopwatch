@@ -30,7 +30,10 @@ button {
     border-radius: 25px;
 }
 
-.lap {
+.lap-section {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr;
     margin-top: 35px;
     font-size: 44px;
 }
