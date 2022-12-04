@@ -7,6 +7,9 @@ const stopButton = document.querySelector('#stop-button');
 const lapButton = document.querySelector('#lap-button');
 const resetButton = document.querySelector('#reset-button');
 const lapSection = document.querySelector(".lap-section");
+let realTens = 0;
+let rodolfoTens = 0;
+let realSeconds = 0;
 let tens = 00;
 let seconds = 00;
 let timer;
@@ -14,6 +17,7 @@ let lapCount = 0;
 
 const startTimer = () => {
     tens++;
+    realTens++;
     if (tens <= 9) {
         displayTens.innerHTML = '0' + tens;
     };
@@ -39,24 +43,25 @@ const startFunction = () => {
     timer = setInterval(startTimer, 10);
 };
 
-
 const lapFunction = () => {
     lapCount++;
+    realSeconds = Math.floor(realTens / 100);
+    rodolfoTens = realTens - (realSeconds * 100);
     const lapElement = document.createElement("p");
-    lapElement.innerHTML = 'Lap' + lapCount + ':' + seconds + ':' + tens;
     lapSection.append(lapElement);
-    if (tens <= 9 && seconds <= 9) {
-        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + '0' + seconds + ':' + '0' + tens;
+    if (rodolfoTens <= 9 && realSeconds <= 9) {
+        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + '0' + realSeconds + ':' + '0' + rodolfoTens;
     };
-    if (tens > 9 && seconds <= 9) {
-        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + '0' + seconds + ':' + tens;
+    if (rodolfoTens > 9 && realSeconds <= 9) {
+        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + '0' + realSeconds + ':' + rodolfoTens;
     };
-    if (tens <= 9 && seconds > 9) {
-        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + seconds + ':' + '0' + tens;
-    }
-    if (tens > 9 && seconds > 9) {
-        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + seconds + ':' + tens;
+    if (rodolfoTens <= 9 && realSeconds > 9) {
+        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + realSeconds + ':' + '0' + rodolfoTens;
     };
+    if (rodolfoTens > 9 && realSeconds > 9) {
+        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + realSeconds + ':' + rodolfoTens;
+    };
+    realTens = 0;
 };
 
 const resetFunction = () => {
