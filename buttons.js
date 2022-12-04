@@ -7,30 +7,31 @@ const stopButton = document.querySelector('#stop-button');
 const lapButton = document.querySelector('#lap-button');
 const resetButton = document.querySelector('#reset-button');
 const lapSection = document.querySelector(".lap-section");
-let realTens = 0;
-let rodolfoTens = 0;
-let realSeconds = 0;
-let tens = 00;
-let seconds = 00;
+
+let totalTens = 0;
+let lapFunctionTens = 0;
+let lapFunctionSeconds = 0;
+let timerTens = 00;
+let timerSeconds = 00;
 let timer;
 let lapCount = 0;
 
 const startTimer = () => {
-    tens++;
-    realTens++;
-    if (tens <= 9) {
-        displayTens.innerHTML = '0' + tens;
+    timerTens++;
+    totalTens++;
+    if (timerTens <= 9) {
+        displayTens.innerHTML = '0' + timerTens;
     };
-    if (tens > 9) {
-        displayTens.innerHTML = tens;
+    if (timerTens > 9) {
+        displayTens.innerHTML = timerTens;
     };
-    if (tens > 99) {
-        tens = 00;
-        seconds++;
-        displaySeconds.innerHTML = '0' + seconds;
+    if (timerTens > 99) {
+        timerTens = 00;
+        timerSeconds++;
+        displaySeconds.innerHTML = '0' + timerSeconds;
     };
     if (seconds > 9) {
-        displaySeconds.innerHTML = seconds;
+        displaySeconds.innerHTML = timerSeconds;
     };
 };
 
@@ -45,31 +46,31 @@ const startFunction = () => {
 
 const lapFunction = () => {
     lapCount++;
-    realSeconds = Math.floor(realTens / 100);
-    rodolfoTens = realTens - (realSeconds * 100);
+    lapFunctionSeconds = Math.floor(totalTens / 100);
+    lapFunctionTens = totalTens - (lapFunctionSeconds * 100);
     const lapElement = document.createElement("p");
     lapSection.append(lapElement);
-    if (rodolfoTens <= 9 && realSeconds <= 9) {
-        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + '0' + realSeconds + ':' + '0' + rodolfoTens;
+    if (lapFunctionTens <= 9 && lapFunctionSeconds <= 9) {
+        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + '0' + lapFunctionSeconds + ':' + '0' + lapFunctionTens;
     };
-    if (rodolfoTens > 9 && realSeconds <= 9) {
-        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + '0' + realSeconds + ':' + rodolfoTens;
+    if (lapFunctionTens > 9 && lapFunctionSeconds <= 9) {
+        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + '0' + lapFunctionSeconds + ':' + lapFunctionTens;
     };
-    if (rodolfoTens <= 9 && realSeconds > 9) {
-        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + realSeconds + ':' + '0' + rodolfoTens;
+    if (lapFunctionTens <= 9 && lapFunctionSeconds > 9) {
+        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + lapFunctionSeconds + ':' + '0' + lapFunctionTens;
     };
-    if (rodolfoTens > 9 && realSeconds > 9) {
-        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + realSeconds + ':' + rodolfoTens;
+    if (lapFunctionTens > 9 && lapFunctionSeconds > 9) {
+        lapElement.innerHTML = 'LAP ' + lapCount + ' : ' + lapFunctionSeconds + ':' + lapFunctionTens;
     };
-    realTens = 0;
+    totalTens = 0;
 };
 
 const resetFunction = () => {
     clearInterval(timer);
-    tens = 00;
-    seconds = 00;
-    displayTens.innerHTML = '0' + tens;
-    displaySeconds.innerHTML = '0' + seconds;
+    timerTens = 00;
+    timerSeconds = 00;
+    displayTens.innerHTML = '0' + timerTens;
+    displaySeconds.innerHTML = '0' + timerSeconds;
     lapCount = 0;
     lapSection.innerHTML = ''
 };
