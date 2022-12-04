@@ -65,9 +65,8 @@ const resetFunction = () => {
     seconds = 00;
     displayTens.innerHTML = '0' + tens;
     displaySeconds.innerHTML = '0' + seconds;
-    lapTens.innerHTML = '0' + tens;
-    lapSeconds.innerHTML = '0' + seconds;
     lapCount = 0;
+    lapSection.innerHTML = ''
 };
 
 startButton.addEventListener('click', startFunction);
